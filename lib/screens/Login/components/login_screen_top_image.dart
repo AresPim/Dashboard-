@@ -13,7 +13,7 @@ class LoginScreenTopImage extends StatelessWidget {
     return Column(
       children: [
         const Text(
-          "LOGIN",
+          "Welcome to FALS",
           style: TextStyle(color: kPrimaryLightColor,fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: defaultPadding * 2),

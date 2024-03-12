@@ -1,4 +1,3 @@
-import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -10,11 +9,7 @@ class OrderScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Orders'),
       ),
-      body: Responsive(
-        mobile: OrderList(),
-        tablet: OrderList(),
-        desktop: OrderList(),
-      ),
+      body: OrderList(),
     );
   }
 }
@@ -37,7 +32,7 @@ class _OrderListState extends State<OrderList> {
 
   Future<void> fetchOrders() async {
     final response =
-        await http.get(Uri.parse('http://localhost:7020/order/orders'));
+    await http.get(Uri.parse('http://localhost:7002/order/orders'));
 
     if (response.statusCode == 200) {
       final List<dynamic> decodedData = json.decode(response.body);
@@ -72,16 +67,16 @@ class _OrderListState extends State<OrderList> {
                 value: selectedStatus,
                 items: getStatusFilters()
                     .map((filter) => DropdownMenuItem<String>(
-                          value: filter['value'],
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Text(
-                              filter['label']!,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ))
+                  value: filter['value'],
+                  child: Padding(
+                    padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
+                      filter['label']!,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ))
                     .toList(),
                 onChanged: (value) {
                   setState(() {
@@ -93,60 +88,63 @@ class _OrderListState extends State<OrderList> {
           ),
         ),
         Expanded(
-          child: DataTable(
-            columns: [
-              DataColumn(
-                label: Text(
-                  'Order ID',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: DataTable(
+              columns: [
+                DataColumn(
+                  label: Text(
+                    'Order ID',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Order Date',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                DataColumn(
+                  label: Text(
+                    'Order Date',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Status',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                DataColumn(
+                  label: Text(
+                    'Status',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Total Price',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                DataColumn(
+                  label: Text(
+                    'Total Price',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-            ],
-            rows: orders
-                .where((order) =>
-                    selectedStatus.toLowerCase() == 'all' ||
-                    order['status'].toLowerCase() ==
-                        selectedStatus.toLowerCase())
-                .map((order) => DataRow(
-                      cells: [
-                        DataCell(Text(order['_id'])),
-                        DataCell(Text(order['createdAt']
-                            .toString()
-                            .split('.')
-                            .first)),
-                        DataCell(
-                          Text(
-                            order['status'],
-                            style: TextStyle(
-                              color: order['status'].toLowerCase() ==
-                                      'accepted'
-                                  ? Colors.green.shade400
-                                  : Color.fromARGB(255, 86, 188, 113),
-                            ),
-                          ),
-                        ),
-                        DataCell(Text('${order['totalAmount']} \TND')),
-                      ],
-                    ))
-                .toList(),
+              ],
+              rows: orders
+                  .where((order) =>
+              selectedStatus.toLowerCase() == 'all' ||
+                  order['status'].toLowerCase() ==
+                      selectedStatus.toLowerCase())
+                  .map((order) => DataRow(
+                cells: [
+                  DataCell(Text(order['_id'])),
+                  DataCell(Text(order['createdAt']
+                      .toString()
+                      .split('.')
+                      .first)),
+                  DataCell(
+                    Text(
+                      order['status'],
+                      style: TextStyle(
+                        color: order['status'].toLowerCase() ==
+                            'accepted'
+                            ? Colors.green.shade400
+                            : Color.fromARGB(255, 86, 188, 113),
+                      ),
+                    ),
+                  ),
+                  DataCell(Text('${order['totalAmount']} \TND')),
+                ],
+              ))
+                  .toList(),
+            ),
           ),
         ),
       ],

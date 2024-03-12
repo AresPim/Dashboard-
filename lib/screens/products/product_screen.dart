@@ -55,7 +55,7 @@ class _ProductListState extends State<ProductList> {
 
   Future<void> fetchProducts() async {
     try {
-      final response = await http.get(Uri.parse('http://localhost:7020/product/products'));
+      final response = await http.get(Uri.parse('http://localhost:7002/product/products'));
 
       if (response.statusCode == 200) {
         final List<dynamic> decodedData = json.decode(response.body);
@@ -72,7 +72,7 @@ class _ProductListState extends State<ProductList> {
 
   Future<void> fetchUsers() async {
     try {
-      final response = await http.get(Uri.parse('http://localhost:7020/user/users'));
+      final response = await http.get(Uri.parse('http://localhost:7002/user/users'));
 
       if (response.statusCode == 200) {
         final List<dynamic> decodedData = json.decode(response.body);
@@ -176,7 +176,7 @@ class _ProductListState extends State<ProductList> {
 
   Future<void> deleteProduct(String productId) async {
     try {
-      final response = await http.delete(Uri.parse('http://localhost:7020/product/products/$productId'));
+      final response = await http.delete(Uri.parse('http://localhost:7002/product/products/$productId'));
 
       if (response.statusCode == 200) {
         // Produit supprimé avec succès, mettre à jour l'état local

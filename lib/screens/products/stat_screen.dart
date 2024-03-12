@@ -25,7 +25,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
 
   Future<List<Product>> fetchProducts() async {
     final response =
-        await http.get(Uri.parse('http://localhost:7020/product/products'));
+        await http.get(Uri.parse('http://localhost:7002/product/products'));
 
     if (response.statusCode == 200) {
       final List<dynamic> decodedData = json.decode(response.body);
@@ -39,7 +39,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
 
   Future<void> fetchUsers() async {
     final response =
-        await http.get(Uri.parse('http://localhost:7020/user/users'));
+        await http.get(Uri.parse('http://localhost:7002/user/users'));
 
     if (response.statusCode == 200) {
       final List<dynamic> decodedData = json.decode(response.body);

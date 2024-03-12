@@ -23,52 +23,7 @@ class _MyFilesState extends State<MyFiles> {
     final Size _size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Users",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-              ElevatedButton.icon(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
-                  vertical:
-                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                ),
-              ),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text("Add New User"),
-                      content: Container(
-                        width: 500,
-                        height: 500,
-                        child: AddDonationScreen(
-                          onRefresh:
-                              widget.onRefresh, // Pass the onRefresh callback
-                        ),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(); // Close the dialog
-                          },
-                          child: Text("Close"),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              icon: Icon(Icons.add),
-              label: Text("Add new User"),
-            ),
-          ],
-        ),
+
         SizedBox(height: defaultPadding),
         Responsive(
           mobile: FileInfoCardGridView(
