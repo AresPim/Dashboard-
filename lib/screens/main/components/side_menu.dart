@@ -1,10 +1,6 @@
-import 'package:admin/screens/orders/order_screen.dart';
 import 'package:admin/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../donations/donations_screen.dart';
-import '../../products/product_screen.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -33,30 +29,21 @@ class SideMenu extends StatelessWidget {
             title: "Posts",
             svgSrc: "assets/icons/donation.svg",
             press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => DonationScreen()),
-              );
+
             },
           ),
           DrawerListTile(
-            title: "Cards",
+            title: "Documents and Cards",
             svgSrc: "assets/icons/products.svg",
             press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProductScreen()),
-              );
+
             },
           ),
           DrawerListTile(
             title: "Reports",
             svgSrc: "assets/icons/products.svg",
             press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => OrderScreen()),
-              );
+
             },
           ),
           DrawerListTile(
