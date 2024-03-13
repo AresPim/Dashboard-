@@ -63,7 +63,7 @@ class MobileProfileScreen extends StatelessWidget {
             Spacer(),
           ],
         ),
-        // const SocalSignUp()
+
       ],
     );
   }
