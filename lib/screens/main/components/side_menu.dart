@@ -1,6 +1,11 @@
+
 import 'package:admin/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../documentVerification/documents.dart';
+import '../../post/newPost.dart';
+import '../../reports/reports.dart';
+import '../../settings/settings.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -29,21 +34,30 @@ class SideMenu extends StatelessWidget {
             title: "Posts",
             svgSrc: "assets/icons/donation.svg",
             press: () {
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Posts()),
+              );
             },
           ),
           DrawerListTile(
-            title: "Documents and Cards",
+            title: "Cards",
             svgSrc: "assets/icons/products.svg",
             press: () {
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => VerificationTable()), // Naviguer vers la classe DocumentScreen
+              );
             },
           ),
           DrawerListTile(
             title: "Reports",
             svgSrc: "assets/icons/products.svg",
             press: () {
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Reports()),
+              );
             },
           ),
           DrawerListTile(
@@ -59,7 +73,12 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Settings",
             svgSrc: "assets/icons/settings.svg",
-            press: () {},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PageLayout()),
+              );
+            },
           ),
         ],
       ),
@@ -70,7 +89,6 @@ class SideMenu extends StatelessWidget {
 class DrawerListTile extends StatelessWidget {
   const DrawerListTile({
     Key? key,
-    // For selecting those three line once press "Command+D"
     required this.title,
     required this.svgSrc,
     required this.press,

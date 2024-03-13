@@ -6,7 +6,7 @@
 #include <chrono>
 #include <set>
 
-// A runloop that will service events for Flutter instances as well
+// A runloop that will constants events for Flutter instances as well
 // as native messages.
 class RunLoop {
  public:

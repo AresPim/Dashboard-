@@ -7,3 +7,4 @@ const kPrimaryColor = Color(0xFF212332);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
 
 const defaultPadding = 16.0;
+final url = 'http://172.16.1.188:9090/';
